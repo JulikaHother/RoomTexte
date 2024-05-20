@@ -46,10 +46,10 @@ Cynthia Cornelius hat Literaturwissenschaften und Französisch in Marseille und 
 
     document.getElementById('viewport-size').innerHTML = `
       Room ${width} x ${height}<br><br>
-      Room 2738 x 2183 – 3892 x 2193 <span class="wer">wer</span><br>
-      Room 3204 x 3811 – 3801 x 5032 <span class="wo">wo</span><br>
-      Room 1030 x 9282 – 2044 x 5619 <span class="wie">wie</span><br>
-      Room 1234 x 7806 – 3141 x 7564 <span class="was">was</span><br>
+      Room 1 <span class="wer">wer</span><br>
+      Room 2 <span class="wo">wo</span><br>
+      Room 3 <span class="wie">wie</span><br>
+      Room 4 <span class="was">was</span><br>
     `;
   }
 

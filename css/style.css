@@ -42,7 +42,6 @@ li {
   padding: 0;
 }
 
-
 /* .logo-container {
   width: 100vw;
   height: 100vh;
@@ -66,7 +65,6 @@ li {
   /* z-index: 1000; */
 }
 
-
 /******** pfeile ********/
 
 .navigation {
@@ -75,7 +73,7 @@ li {
   height: 100vh;
   top: 0;
   left: 0;
-
+  background: none;
 }
 
 .pfeil {
@@ -136,7 +134,6 @@ li {
 
 /******** texte ********/
 
-
 .text {
   font-size: 20px;
   position: absolute;
@@ -155,10 +152,12 @@ li {
   display: block;
 } */
 
-.about-text {
-  font-size: 2rem;
+#about-text {
+  font-size: 3.1rem;
   display: none;
-  margin: 30px;
+  margin-top: 15px;
+  margin-left: 250px;
+  color: rgb(147, 147, 147);
 }
 
 .text-container {
@@ -209,7 +208,6 @@ li {
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 95%;
-
 }
 
 .room {
@@ -230,7 +228,6 @@ li {
 .room span {
   text-decoration: underline dotted;
   font-style: italic;
-
 }
 
 .wer {
@@ -239,7 +236,6 @@ li {
 
 .wo {
   color: rgb(179, 134, 105);
-
 }
 
 .wie {
@@ -250,7 +246,7 @@ li {
   color: rgb(147, 147, 147);
 }
 
-@media only screen and (min-height: 550px) and (max-height: 750px) and (min-width: 1000px) {
+/* @media only screen and (min-height: 550px) and (max-height: 750px) and (min-width: 1000px) {
   #typed-text {
     display: block;
   }
@@ -266,4 +262,44 @@ li {
   #kontakt {
     display: block;
   }
+} */
+
+
+
+@media (max-aspect-ratio: 1/2)  {
+  /* .navigation {
+    background-color: rgb(255, 0, 225);
+  } */
+  #kontakt {
+    display: block;
+  }
+}
+
+@media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 1/1) {
+  /* .navigation {
+    background-color: green;
+  } */  #typed-text-publi {
+    display: block;
+  }
+}
+
+
+@media (min-aspect-ratio: 1/1) and (max-aspect-ratio: 3/2) {
+  /* .navigation {
+    background-color: blue;
+  } */
+  #typed-text {
+    display: block;
+  }
+}
+
+
+@media (min-aspect-ratio: 3/2)  {
+  /* .navigation {
+    background-color: rgb(0, 234, 255);
+  } */
+  #about-text {
+    display: block;
+  }
+
 }
