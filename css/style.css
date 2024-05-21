@@ -81,7 +81,6 @@ li {
   margin: 5px;
   width: 15px;
   height: 15px;
-  cursor: pointer;
 }
 
 .links {
@@ -156,8 +155,9 @@ li {
   font-size: 3.1rem;
   display: none;
   margin-top: 15px;
-  margin-left: 250px;
-  color: rgb(147, 147, 147);
+  margin-left: 275px;
+  /* color: rgb(147, 147, 147); */
+  color: black;
 }
 
 .text-container {
@@ -182,40 +182,30 @@ li {
 }
 
 #typed-text-publi {
-  position: fixed;
-  top: 0;
-  right: 0;
+  position: relativ;
   font-size: 2rem;
   display: none;
-  margin: 58px;
+  margin: 70px;
   margin-left: 18px !important;
   color: rgb(179, 134, 105);
-  max-width: 40vw;
-  bottom: 0;
-  right: 0;
+  max-width: 90vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
 #kontakt {
-  position: fixed;
+  position: relativ;
   font-size: 2rem;
   display: none;
-  margin-left: 18px;
-  bottom: 30px;
+  margin-top: 90px;
+  margin-left: 18px !important;
   color: rgb(255, 110, 77);
-  max-width: 60vw;
+  max-width: 90vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
   line-height: 95%;
 }
 
-.room {
-  font-size: 1.7rem;
-  line-height: 95%;
-  bottom: 30px;
-  right: 40px;
-}
 
 #viewport-size {
   position: fixed;
@@ -225,26 +215,108 @@ li {
   z-index: 1000;
 }
 
-.room span {
-  text-decoration: underline dotted;
-  font-style: italic;
-}
 
 .wer {
   color: rgb(0, 140, 255);
+  display: none;
 }
 
 .wo {
   color: rgb(179, 134, 105);
+  display: none;
 }
 
 .wie {
   color: rgb(255, 110, 77);
+  display: none;
 }
 
 .was {
   color: rgb(147, 147, 147);
+  display: none;
 }
+
+/* Navigation */
+.räume {
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+  height: 135px;
+  width: 145px;
+}
+
+.räume p {
+  font-size: 1.3em;
+  margin: 0;
+  margin-top: 2px;
+  line-height: 95%;
+  width: auto;
+  cursor: pointer;
+}
+
+.raumplan {
+  background-color: rgb(216, 216, 216);
+  height: 65%;
+  width: 100%;
+  text-align: center;
+
+  /* Inhalt vertikal mittig platzieren */
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.grundriss {
+  position: relative;
+  /* Erforderlich für absolute Positionierung der Kind-Elemente */
+  border: 1px solid black;
+  height: 95%;
+  width: 95%;
+  margin: auto;
+  z-index: 0;
+  background-color: rgba(42, 41, 41, 0.245);
+}
+
+.raumblau,
+.raumbraun,
+.raumorange {
+  position: absolute;
+  border: 1px solid;
+  /* Passen Sie dies je nach Bedarf an */
+  /* Passen Sie dies je nach Bedarf an */
+  top: 0;
+  right: 0;
+}
+
+.raumblau {
+  border-color: rgb(0, 140, 255);
+  z-index: 1;
+  width: 75%;
+  height: 95%;
+  margin: 1.5%;
+}
+
+.raumbraun {
+  border-color: rgb(179, 134, 105);
+  z-index: 2;
+  width: 50%;
+  height: 90%;
+  margin: 3%;
+}
+
+.raumorange {
+  border-color: rgb(255, 110, 77);
+  z-index: 3;
+  width: 25%;
+  height: 85%;
+  margin: 4.5%;
+}
+
 
 /* @media only screen and (min-height: 550px) and (max-height: 750px) and (min-width: 1000px) {
   #typed-text {
@@ -266,40 +338,86 @@ li {
 
 
 
-@media (max-aspect-ratio: 1/2)  {
+@media (max-aspect-ratio: 1/2) {
+
   /* .navigation {
     background-color: rgb(255, 0, 225);
   } */
   #kontakt {
     display: block;
   }
+
+  .wie {
+    display: inline;
+    font-style: italic;
+  }
+
+  .grundriss {
+    background-color: rgba(255, 255, 255, 0);
+  }
+
 }
 
 @media (min-aspect-ratio: 1/2) and (max-aspect-ratio: 1/1) {
+
   /* .navigation {
     background-color: green;
-  } */  #typed-text-publi {
+  } */
+  #typed-text-publi {
     display: block;
   }
+
+  .wo {
+    display: inline;
+    font-style: italic;
+  }
+
+  .raumbraun {
+    background-color: rgba(179, 135, 105, 0.454);
+  }
+
+  .grundriss {
+    background-color: rgba(255, 255, 255, 0);
+  }
+
 }
 
 
 @media (min-aspect-ratio: 1/1) and (max-aspect-ratio: 3/2) {
+
   /* .navigation {
     background-color: blue;
   } */
   #typed-text {
     display: block;
   }
+
+  .wer {
+    display: inline;
+    font-style: italic;
+  }
+
+  .raumblau {
+    background-color: rgba(0, 140, 255, 0.41);
+  }
+
+  .grundriss {
+    background-color: rgba(255, 255, 255, 0);
+  }
 }
 
 
-@media (min-aspect-ratio: 3/2)  {
+@media (min-aspect-ratio: 3/2) {
+
   /* .navigation {
     background-color: rgb(0, 234, 255);
   } */
   #about-text {
     display: block;
+  }
+
+  .grundriss {
+    background-color: rgba(255, 255, 255, 0);
   }
 
 }
