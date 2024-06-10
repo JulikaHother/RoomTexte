@@ -96,59 +96,59 @@ $(document).ready(function () {
     checkWidth();
   });
 
-  const documentHeight = $(document).height();
-  console.log('Document height (initial):', documentHeight);
+  // const documentHeight = $(document).height();
+  // console.log('Document height (initial):', documentHeight);
 
-  function checkHeight() {
-    const windowHeight = $(window).height();
-    console.log('Window height:', windowHeight);
+  // function checkHeight() {
+  //   const windowHeight = $(window).height();
+  //   console.log('Window height:', windowHeight);
 
-    if (windowHeight <= documentHeight) {
-      $('body').addClass('hoehe1');
-      $('body').removeClass('hoehe2 hoehe3 hoehe4');
-      $('.hoehe1').show();
-      $('.hoehe2, .hoehe3, .hoehe4').hide();
-    } else {
-      $('body').removeClass('hoehe1');
-      $('.hoehe1').hide();
-    }
+  //   if (windowHeight <= documentHeight) {
+  //     $('body').addClass('hoehe1');
+  //     $('body').removeClass('hoehe2 hoehe3 hoehe4');
+  //     $('.hoehe1').show();
+  //     $('.hoehe2, .hoehe3, .hoehe4').hide();
+  //   } else {
+  //     $('body').removeClass('hoehe1');
+  //     $('.hoehe1').hide();
+  //   }
 
-    if (windowHeight <= documentHeight / 1.2) {
-      $('body').addClass('hoehe2');
-      $('body').removeClass('hoehe1 hoehe3 hoehe4');
-      $('.hoehe2').show();
-      $('.hoehe1, .hoehe3, .hoehe4').hide();
-    } else {
-      $('body').removeClass('hoehe2');
-      $('.hoehe2').hide();
-    }
+  //   if (windowHeight <= documentHeight / 1.2) {
+  //     $('body').addClass('hoehe2');
+  //     $('body').removeClass('hoehe1 hoehe3 hoehe4');
+  //     $('.hoehe2').show();
+  //     $('.hoehe1, .hoehe3, .hoehe4').hide();
+  //   } else {
+  //     $('body').removeClass('hoehe2');
+  //     $('.hoehe2').hide();
+  //   }
 
-    if (windowHeight <= documentHeight / 1.5) {
-      $('body').addClass('hoehe3');
-      $('body').removeClass('hoehe1 hoehe2 hoehe4');
-      $('.hoehe3').show();
-      $('.hoehe1, .hoehe2, .hoehe4').hide();
-    } else {
-      $('body').removeClass('hoehe3');
-      $('.hoehe3').hide();
-    }
+  //   if (windowHeight <= documentHeight / 1.5) {
+  //     $('body').addClass('hoehe3');
+  //     $('body').removeClass('hoehe1 hoehe2 hoehe4');
+  //     $('.hoehe3').show();
+  //     $('.hoehe1, .hoehe2, .hoehe4').hide();
+  //   } else {
+  //     $('body').removeClass('hoehe3');
+  //     $('.hoehe3').hide();
+  //   }
 
-    if (windowHeight <= documentHeight / 1.8) {
-      $('body').addClass('hoehe4');
-      $('body').removeClass('hoehe1 hoehe2 hoehe3');
-      $('.hoehe4').show();
-      $('.hoehe1, .hoehe2, .hoehe3').hide();
-    } else {
-      $('body').removeClass('hoehe4');
-      $('.hoehe4').hide();
-    }
-  }
+  //   if (windowHeight <= documentHeight / 1.8) {
+  //     $('body').addClass('hoehe4');
+  //     $('body').removeClass('hoehe1 hoehe2 hoehe3');
+  //     $('.hoehe4').show();
+  //     $('.hoehe1, .hoehe2, .hoehe3').hide();
+  //   } else {
+  //     $('body').removeClass('hoehe4');
+  //     $('.hoehe4').hide();
+  //   }
+  // }
 
-  // Initial check
-  checkHeight();
+  // // Initial check
+  // checkHeight();
 
-  // Check height on window resize
-  $(window).resize(function () {
-    checkHeight();
-  });
+  // // Check height on window resize
+  // $(window).resize(function () {
+  //   checkHeight();
+  // });
 });
