@@ -1,13 +1,17 @@
 // Typewriter effect initialization
-function applyTypewriterEffect(elementId, pauseDuration = 10) {
+function applyTypewriterEffect(elementId, pauseDuration = 10, typeSpeed = 100, deleteSpeed = 50) {
   var element = document.getElementById(elementId);
   var html = element.innerHTML;
 
   // Clean up the HTML content by replacing multiple spaces and line breaks with a single space
   var cleanedHtml = html.replace(/\s*(<br\s*\/?>)\s*/gi, '$1').replace(/\s\s+/g, ' ').trim();
 
-  // Initialize the Typewriter effect
-  var typewriter = new Typewriter(element, { loop: false });
+  // Initialize the Typewriter effect with customized speeds
+  var typewriter = new Typewriter(element, {
+    loop: false,
+    delay: typeSpeed,
+    deleteSpeed: deleteSpeed
+  });
 
   typewriter.pauseFor(pauseDuration)
     .typeString(cleanedHtml)
@@ -19,8 +23,7 @@ applyTypewriterEffect('about-text');
 applyTypewriterEffect('textHonich');
 applyTypewriterEffect('textJohannes');
 applyTypewriterEffect('textHeidenord');
-
-
+applyTypewriterEffect('textSelma');
 
 
 
@@ -96,26 +99,38 @@ $(document).ready(function () {
   checkWidth();
 
   const documentHeight = $(document).height();
-  // console.log('Document height (initial):', documentHeight);
+  console.log('Document height (initial):', documentHeight);
 
   function checkHeight() {
     const windowHeight = $(window).height();
-    // console.log('Window height:', windowHeight);
+    console.log('Window height:', windowHeight);
 
     if (windowHeight <= documentHeight / 1.5) {
-      // console.log('documentHeight / 1.5')
+      console.log('documentHeight / 1.5')
       $('body').addClass('hoehe1');
 
       $('.hoehe1').show();
-      // $('.halb-0 .halb-2 .halb-3 .halb .hoehe2 .hoehe3').hide();
+      $('.halb-0 .halb-2 .halb-3 .halb .hoehe2 .hoehe3').hide();
     } else {
-      // console.log('NOT documentHeight / 1.5')
+      console.log('NOT documentHeight / 1.5')
       $('body').removeClass('hoehe1');
       $('.hoehe1').hide();
     }
 
+    // if (windowHeight <= documentHeight / 2) {
+    //   console.log('documentHeight / 2')
+    //   $('body').addClass('hoehe2');
+
+    //   $('.hoehe2').show();
+    //   $('.halb-0 .halb-2 .halb-3 .halb .hoehe1 .hoehe3').hide();
+    // } else {
+    //   console.log('NOT documentHeight / 2')
+    //   $('body').removeClass('hoehe2');
+    //   $('.hoehe2').hide();
+    // }
+
     $('body').removeClass();
-    $('.texte').hide();
+    // $('.texte').hide();
 
 
   }
