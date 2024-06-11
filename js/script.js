@@ -16,9 +16,9 @@ function applyTypewriterEffect(elementId, pauseDuration = 10) {
 
 // Apply the Typewriter effect to specified elements
 applyTypewriterEffect('about-text');
-applyTypewriterEffect('typed-text-publi');
-applyTypewriterEffect('typed-text');
-applyTypewriterEffect('kontakt');
+applyTypewriterEffect('textHonich');
+applyTypewriterEffect('textJohannes');
+applyTypewriterEffect('textHeidenord');
 
 
 
@@ -26,7 +26,7 @@ applyTypewriterEffect('kontakt');
 
 $(document).ready(function () {
   const documentWidth = $(document).width();
-  console.log('Document width (initial):', documentWidth);
+  // console.log('Document width (initial):', documentWidth);
 
   function checkWidth() {
     const windowWidth = $(window).width();
@@ -45,7 +45,11 @@ $(document).ready(function () {
       $('.halb-0').hide();
     }
 
-    if (windowWidth <= documentWidth / 1.1) {
+    if (windowWidth <= documentWidth / 1.1 || windowWidth >= documentWidth * 1.1) {
+      // var random = '.rand' + (Math.floor(Math.random() * 3) + 1);
+      // console.log(random)
+      // $('.rand').hide();
+      // $(random).show();
       $('body').addClass('halb-3');
       $('body').removeClass('halb-2 halb halb-0');
       $('.halb-3').show();
@@ -59,7 +63,7 @@ $(document).ready(function () {
       $('.raumblau').css('background-color', '');
     }
 
-    if (windowWidth <= documentWidth / 1.5) {
+    if (windowWidth <= documentWidth / 1.5 || windowWidth >= documentWidth * 1.5) {
       $('body').addClass('halb-2');
       $('body').removeClass('halb-3 halb halb-0');
       $('.halb-2').show();
@@ -73,7 +77,7 @@ $(document).ready(function () {
       $('.raumbraun').css('background-color', '');
     }
 
-    if (windowWidth <= documentWidth / 2) {
+    if (windowWidth <= documentWidth / 2 || windowWidth >= documentWidth * 2) {
       $('body').addClass('halb');
       $('body').removeClass('halb-3 halb-2 halb-0');
       $('.halb').show();
@@ -91,64 +95,54 @@ $(document).ready(function () {
   // Initial check
   checkWidth();
 
-  // Check width on window resize
-  $(window).resize(function () {
-    checkWidth();
-  });
-
-  // const documentHeight = $(document).height();
+  const documentHeight = $(document).height();
   // console.log('Document height (initial):', documentHeight);
 
-  // function checkHeight() {
-  //   const windowHeight = $(window).height();
-  //   console.log('Window height:', windowHeight);
+  function checkHeight() {
+    const windowHeight = $(window).height();
+    // console.log('Window height:', windowHeight);
 
-  //   if (windowHeight <= documentHeight) {
-  //     $('body').addClass('hoehe1');
-  //     $('body').removeClass('hoehe2 hoehe3 hoehe4');
-  //     $('.hoehe1').show();
-  //     $('.hoehe2, .hoehe3, .hoehe4').hide();
-  //   } else {
-  //     $('body').removeClass('hoehe1');
-  //     $('.hoehe1').hide();
-  //   }
+    if (windowHeight <= documentHeight / 1.5) {
+      // console.log('documentHeight / 1.5')
+      $('body').addClass('hoehe1');
 
-  //   if (windowHeight <= documentHeight / 1.2) {
-  //     $('body').addClass('hoehe2');
-  //     $('body').removeClass('hoehe1 hoehe3 hoehe4');
-  //     $('.hoehe2').show();
-  //     $('.hoehe1, .hoehe3, .hoehe4').hide();
-  //   } else {
-  //     $('body').removeClass('hoehe2');
-  //     $('.hoehe2').hide();
-  //   }
+      $('.hoehe1').show();
+      // $('.halb-0 .halb-2 .halb-3 .halb .hoehe2 .hoehe3').hide();
+    } else {
+      // console.log('NOT documentHeight / 1.5')
+      $('body').removeClass('hoehe1');
+      $('.hoehe1').hide();
+    }
 
-  //   if (windowHeight <= documentHeight / 1.5) {
-  //     $('body').addClass('hoehe3');
-  //     $('body').removeClass('hoehe1 hoehe2 hoehe4');
-  //     $('.hoehe3').show();
-  //     $('.hoehe1, .hoehe2, .hoehe4').hide();
-  //   } else {
-  //     $('body').removeClass('hoehe3');
-  //     $('.hoehe3').hide();
-  //   }
+    $('body').removeClass();
+    $('.texte').hide();
 
-  //   if (windowHeight <= documentHeight / 1.8) {
-  //     $('body').addClass('hoehe4');
-  //     $('body').removeClass('hoehe1 hoehe2 hoehe3');
-  //     $('.hoehe4').show();
-  //     $('.hoehe1, .hoehe2, .hoehe3').hide();
-  //   } else {
-  //     $('body').removeClass('hoehe4');
-  //     $('.hoehe4').hide();
-  //   }
-  // }
 
-  // // Initial check
-  // checkHeight();
+  }
 
-  // // Check height on window resize
-  // $(window).resize(function () {
-  //   checkHeight();
-  // });
+  // Initial check
+  checkHeight();
+
+
+  var prevW = -1, prevH = -1;
+  prevW = $(window).width();
+  prevH = $(window).height();
+
+  $(window).resize(function () {
+    var widthChanged = false, heightChanged = false;
+    if ($(window).width() != prevW) {
+      widthChanged = true;
+      // console.log('width')
+      checkWidth();
+    }
+    if ($(window).height() != prevH) {
+      heightChanged = true;
+      // console.log('height')
+      checkHeight();
+    }
+
+    prevW = $(window).width();
+    prevH = $(window).height();
+
+  });
 });
