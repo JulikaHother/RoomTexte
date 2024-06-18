@@ -21,7 +21,10 @@ label {
   cursor: pointer;
 }
 
-
+.link {
+  color: black;
+  text-decoration: none;
+}
 
 *,
 *:after,
@@ -225,6 +228,13 @@ li {
   width: 80px;
   background-color: rgb(216, 216, 216);
   text-align: center;
+
+  aspect-ratio: 3 / 2;
+  /* Example aspect ratio of 3:2 */
+  overflow: hidden;
+  resize: both;
+  box-sizing: border-box;
+
 
   /* Inhalt vertikal mittig platzieren */
   display: -webkit-flex;
