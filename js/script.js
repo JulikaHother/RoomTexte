@@ -1,228 +1,196 @@
-// let typewriters = {};
-count = 0;
-
-// // List of allowed IDs for the typewriter effect
-// const allowedTypewriterIds = ['about-text', 'textHonich', 'textJohannes', 'textHeidenord', 'textSelma'];
-
-// function applyTypewriterEffect(elementId, pauseDuration = 10, typeSpeed = 100, deleteSpeed = 50) {
-//   // Check if the elementId is in the allowed list
-//   if (!allowedTypewriterIds.includes(elementId)) {
-//     return;
-//   }
-
-//   var element = document.getElementById(elementId);
-//   var html = element.innerHTML;
-
-//   // Clean up the HTML content by replacing multiple spaces and line breaks with a single space
-//   var cleanedHtml = html.replace(/\s*(<br\s*\/?>)\s*/gi, '$1').replace(/\s\s+/g, ' ').trim();
-
-//   // Initialize the Typewriter effect with customized speeds
-//   if (!typewriters[elementId]) {
-//     var typewriter = new Typewriter(element, {
-//       loop: false,
-//       delay: typeSpeed,
-//       deleteSpeed: deleteSpeed
-//     });
-
-//     typewriter.pauseFor(pauseDuration)
-//       .typeString(cleanedHtml)
-//       .start();
-
-//     typewriters[elementId] = typewriter;
-//   } else {
-//     typewriters[elementId].start();
-//   }
-// }
-
-// function pauseTypewriterEffect(elementId) {
-//   if (typewriters[elementId]) {
-//     typewriters[elementId].pause();
-//   }
-// }
-
-
-
-// Define an array of string arrays
-const stringSets = [
-  [
-    '<span class="center"><br><br><br>–Meine Oma stirbt und ich erbe nichts</span><span class="center"><br><br><br><br> –Ihre Großmütter sterben und sie erben nichts</span><br><br><br><br><br><br><br><span class="rechtsbuendig kursiv">–außer</span>'
-  ],
-  [
-    'Wie ich mit 15 das erste Mal Koks vom Treppengeländer eines Berliner Hausflurs ziehe, der Bass wummert durch die Wände, ich schwitze unter meiner Lederjacke.<br>',
-    'Wie ich am Morgen danach auf dem Friedhof anhalte und spüre, dass etwas verändert ist.'
-  ],
-  [
-    '2006, das Land feiert die Fußball Weltmeisterschaft der Männer.<br>',
-    '2021 und die fußballspielenden Frauen versuchen aus Afghanistan zu flüchten.'
-  ]
-];
-
-// Initialize Typed.js for each text container
-new Typed('#element1', {
-  strings: stringSets[0],
-  typeSpeed: 50,
-  backSpeed: 0,
-  startDelay: 500,
-  backDelay: 500,
-  showCursor: false,
-  loop: false,
-});
-
-new Typed('#element2', {
-  strings: stringSets[1],
-  typeSpeed: 50,
-  backSpeed: 0,
-  startDelay: 500,
-  backDelay: 500,
-  showCursor: false,
-  loop: false,
-});
-
-new Typed('#element3', {
-  strings: stringSets[2],
-  typeSpeed: 50,
-  backSpeed: 0,
-  startDelay: 500,
-  backDelay: 500,
-  showCursor: false,
-  loop: false,
-});
-
-
+let count = 0;
+let prevClass = '';
+let currentRand = 1;
 
 $(document).ready(function () {
-  const documentWidth = $(document).width();
+  const initialWidth = $(document).width();
 
   function checkWidth() {
-    const windowWidth = $(window).width();
-    console.log('Window width:', windowWidth);
+    const currentWidth = $(window).width();
+    // console.log('Window width:', currentWidth);
 
-    if (windowWidth <= documentWidth) {
-
+    if (currentWidth <= initialWidth) {
       $('body').addClass('halb-0');
       $('body').removeClass('halb-3 halb-2 halb');
-
       $('.halb-0').show();
-
       $('.halb-3, .halb-2, .halb').hide();
-      $('.raumblau').css('background-color', '');
-      $('.raumbraun').css('background-color', '');
-      $('.raumorange').css('background-color', '');
-      $('.raumlila').css('background-color', '');
-
-
-
-
-      // Apply typewriter effect when this condition is met
-      // applyTypewriterEffect('about-text');
+      resetRandStyles();
     } else {
       $('body').removeClass('halb-0');
       $('.halb-0').hide();
-      // pauseTypewriterEffect('about-text');
     }
 
-    if (windowWidth <= documentWidth / 1.1 || windowWidth >= documentWidth * 1.1) {
-      $('body').addClass('halb-3');
 
-      $('body').removeClass('halb-2 halb halb-0');
-      $('.halb-3').show();
 
-      $('.halb-2, .halb, .halb-0').hide();
-      $('.raumblau').css('background-color', 'rgba(0, 140, 255, 0.41)');
-      $('.raumbraun').css('background-color', '');
-      $('.raumorange').css('background-color', '');
-      $('.raumlila').css('background-color', '');
 
-      // const children = $('.rand');
-      // console.log(children);
-      // const randElm = children[(Math.random() * children.length)];
-      // randElm.show();
+
+    // if ((currentWidth <= initialWidth / 2 && currentWidth >= initialWidth / 1.5) ||
+    //   (currentWidth >= initialWidth * 2 && currentWidth <= initialWidth / 1.5)) {
+    //   console.log(prevClass);
+    //   prevClass = 'halb'
+    // }
+    // else if ((currentWidth <= initialWidth / 1.5 && currentWidth >= initialWidth / 1.1) ||
+    //   (currentWidth >= initialWidth * 1.5 && currentWidth <= initialWidth / 1.1)) {
+    //   console.log(prevClass);
+    //   prevClass = 'halb-2'
+    // }
+    // else if ((currentWidth <= initialWidth / 1.1) ||
+    //   (currentWidth >= initialWidth * 1.1)) {
+    //   console.log(prevClass);
+    //   prevClass = 'halb-3'
+    // }
+
+
+    if ((currentWidth <= initialWidth / 1.1 || currentWidth >= initialWidth * 1.1) && prevClass !== 'halb-3') {
       count++;
-      if (count == 1) {
-        console.log(count)
-        var rndInt = Math.floor(Math.random() * 2) + 1;
-        var newww = '.rand' + rndInt;
-        $('.rand').hide()
-        $(newww).show();
-        setTimeout(function () {
-          count = 0;
-        }, 1000)
+      if (count > 3) count = 1;
+      currentRand = count;
+
+      $('.rand1, .rand2, .rand3').hide();
+      if (count === 1) {
+        $('.rand1').show();
+      } else if (count === 2) {
+        $('.rand2').show();
+      } else if (count === 3) {
+        $('.rand3').show();
       }
 
+      prevClass = 'halb-3';
+    } else if ((currentWidth > initialWidth / 1.1 && currentWidth < initialWidth * 1.1) && prevClass === 'halb-3') {
+      prevClass = '';
+    }
 
-
-
-
-      // for (let a = 0; a < children.length; a++) {
-      //   const element = children[a];
-      //   element.computedStyleMap.display = 'none';
-      // }
-
-      // randElm.style.display = 'block';
-
-
-
-      // Apply typewriter effect when this condition is met
-      // applyTypewriterEffect('textHonich');
+    if (currentWidth <= initialWidth / 1.1 || currentWidth >= initialWidth * 1.1) {
+      showCurrentRand('halb-3');
+      $('body').addClass('halb-3');
+      $('body').removeClass('halb-2 halb halb-0');
+      $('.halb-3').show();
+      $('.halb-2, .halb, .halb-0').hide();
+      $('.raumblau').css('background-color', 'rgba(0, 140, 255, 0.41)');
     } else {
       $('body').removeClass('halb-3');
       $('.halb-3').hide();
       $('.raumblau').css('background-color', '');
-      // pauseTypewriterEffect('textHonich');
     }
 
-    if (windowWidth <= documentWidth / 1.5 || windowWidth >= documentWidth * 1.5) {
+    if ((currentWidth <= initialWidth / 1.5 || currentWidth >= initialWidth * 1.5) && prevClass !== 'halb-2') {
+      console.log('ppppppppp');
+      count++;
+      if (count > 3) count = 1;
+      currentRand = count;
+
+      $('.rand4, .rand5, .rand6').hide();
+      if (count === 1) {
+        $('.rand4').show();
+        console.log("rand4");
+      } else if (count === 2) {
+        $('.rand5').show();
+        console.log("rand5");
+      } else if (count === 3) {
+        $('.rand6').show();
+        console.log("rand6");
+      }
+
+      prevClass = 'halb-2';
+    } else if ((currentWidth > initialWidth / 1.5 && currentWidth < initialWidth * 1.5) && prevClass === 'halb-2') {
+      prevClass = '';
+    }
+
+    if (currentWidth <= initialWidth / 1.5 || currentWidth >= initialWidth * 1.5) {
+      showCurrentRand('halb-2');
       $('body').addClass('halb-2');
       $('body').removeClass('halb-3 halb halb-0');
       $('.halb-2').show();
       $('.halb-3, .halb, .halb-0').hide();
       $('.raumblau').css('background-color', '');
       $('.raumbraun').css('background-color', 'rgb(179, 134, 105, 0.41)');
-      $('.raumorange').css('background-color', '');
-      $('.raumlila').css('background-color', '');
-
-
-      // Apply typewriter effect when this condition is met
-      // applyTypewriterEffect('textJohannes');
     } else {
       $('body').removeClass('halb-2');
       $('.halb-2').hide();
       $('.raumbraun').css('background-color', '');
-      // pauseTypewriterEffect('textJohannes');
     }
 
-    if (windowWidth <= documentWidth / 2 || windowWidth >= documentWidth * 2) {
+    if ((currentWidth <= initialWidth / 2 || currentWidth >= initialWidth * 2) && prevClass !== 'halb') {
+      count++;
+      if (count > 3) count = 1;
+      currentRand = count;
+
+      $('.rand7, .rand8, .rand9').hide();
+      if (count === 1) {
+        $('.rand7').show();
+      } else if (count === 2) {
+        $('.rand8').show();
+      } else if (count === 3) {
+        $('.rand9').show();
+      }
+
+      prevClass = 'halb';
+    } else if ((currentWidth > initialWidth / 2 && currentWidth < initialWidth * 2) && prevClass === 'halb') {
+      prevClass = '';
+    }
+
+    if (currentWidth <= initialWidth / 2 || currentWidth >= initialWidth * 2) {
+      showCurrentRand('halb');
       $('body').addClass('halb');
       $('body').removeClass('halb-3 halb-2 halb-0');
       $('.halb').show();
       $('.halb-2, .halb-3, .halb-0').hide();
       $('.raumblau').css('background-color', '');
       $('.raumbraun').css('background-color', '');
-      $('.raumlila').css('background-color', '');
       $('.raumorange').css('background-color', 'rgb(255, 110, 77, 0.41)');
-
-      // Apply typewriter effect when this condition is met
-      // applyTypewriterEffect('textHeidenord');
     } else {
       $('body').removeClass('halb');
       $('.halb').hide();
       $('.raumorange').css('background-color', '');
-      // pauseTypewriterEffect('textHeidenord');
     }
   }
 
-  // Initial check
+
+  function resetRandStyles() {
+    $('.rand1, .rand2, .rand3, .rand4, .rand5, .rand6, .rand7, .rand8, .rand9').hide();
+  }
+
+  function showCurrentRand(halbClass) {
+    if (halbClass === 'halb-3') {
+      $('.rand1, .rand2, .rand3').hide();
+      if (currentRand === 1) {
+        $('.rand1').show();
+      } else if (currentRand === 2) {
+        $('.rand2').show();
+      } else if (currentRand === 3) {
+        $('.rand3').show();
+      }
+    } else if (halbClass === 'halb-2') {
+      $('.rand4, .rand5, .rand6').hide();
+      if (currentRand === 1) {
+        $('.rand4').show();
+      } else if (currentRand === 2) {
+        $('.rand5').show();
+      } else if (currentRand === 3) {
+        $('.rand6').show();
+      }
+    } else if (halbClass === 'halb') {
+      $('.rand7, .rand8, .rand9').hide();
+      if (currentRand === 1) {
+        $('.rand7').show();
+      } else if (currentRand === 2) {
+        $('.rand8').show();
+      } else if (currentRand === 3) {
+        $('.rand9').show();
+      }
+    }
+  }
+
   checkWidth();
 
   const documentHeight = $(document).height();
-  console.log('Document height (initial):', documentHeight);
+  // console.log('Document height (initial):', documentHeight);
 
   function checkHeight() {
     const windowHeight = $(window).height();
     console.log('Window height:', windowHeight);
 
     if (windowHeight <= documentHeight / 1.5) {
-      console.log('documentHeight / 1.5');
       $('body').addClass('hoehe1');
       $('body').removeClass('halb-0 halb-2 halb-3 halb hoehe2 hoehe3');
       $('.hoehe1').show();
@@ -231,19 +199,13 @@ $(document).ready(function () {
       $('.raumbraun').css('background-color', '');
       $('.raumorange').css('background-color', '');
       $('.raumlila').css('background-color', 'rgb(220, 153, 251, 0.6)');
-
-      // Apply typewriter effect when this condition is met
-      // applyTypewriterEffect('textSelma');
     } else {
-      console.log('NOT documentHeight / 1.5');
       $('body').removeClass('hoehe1');
       $('.hoehe1').hide();
       $('.raumlila').css('background-color', '');
-      // pauseTypewriterEffect('textSelma');
     }
   }
 
-  // Initial check
   checkHeight();
 
   var prevW = -1, prevH = -1;

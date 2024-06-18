@@ -118,7 +118,7 @@ li {
   margin-top: 80px;
   padding: 0px 35px 35px 35px;
   overflow: hidden;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 #textHonich {
@@ -225,10 +225,6 @@ li {
   width: 80px;
   background-color: rgb(216, 216, 216);
   text-align: center;
-
-  resize: both;
-  overflow: auto;
-
 
   /* Inhalt vertikal mittig platzieren */
   display: -webkit-flex;
