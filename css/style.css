@@ -6,8 +6,7 @@ body {
   /* font-family: monospace; */
   font-size: 12px;
   font-weight: normal;
-  padding: 0;
-  margin: 0;
+
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,12 +21,16 @@ label {
   cursor: pointer;
 }
 
+
+
 *,
 *:after,
 *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 ul,
@@ -43,8 +46,8 @@ li {
 .logotext {
   position: absolute;
   font-size: 3.6rem;
-  margin-top: 30px;
-  margin-left: 35px;
+  top: 30px;
+  left: 35px;
   width: 400px;
   height: auto;
   cursor: pointer !important;
@@ -56,9 +59,6 @@ li {
   display: none;
   margin-top: 35px;
   margin-left: 39px;
-  color: black;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   max-width: 90vw;
 }
 
@@ -105,59 +105,43 @@ li {
 .texte {
   align-items: center;
   justify-content: center;
-}
-
-.textcontainer {
-  width: 100vw;
-  padding: 40px;
-  height: 75vh;
-  /* background-color: blue; */
-  overflow: hidden;
-
-}
-
-
-#textHonich {
-  font-size: 2rem;
   display: none;
   color: black;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  display: flex;
   flex-direction: column;
+}
+
+.textcontainer {
+  width: 100vw;
+  height: calc(100vh - 160px);
+  margin-top: 80px;
+  padding: 0px 35px 35px 35px;
+  overflow: hidden;
+  background-color: blue;
+}
+
+#textHonich {
+  font-size: 2rem;
 }
 
 #textJohannes {
   font-size: 3.5rem;
-  color: black;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   line-height: 120%;
   text-align: justify;
-  display: flex;
-  flex-direction: column;
 }
+
 
 #textHeidenord {
   font-size: 1.5rem;
-  color: black;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   line-height: 105%;
-  display: flex;
-  flex-direction: column;
 }
 
 #textSelma {
   font-size: 2rem;
-  color: black;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   line-height: 105%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  text-align: justify;
 }
 
 
@@ -167,7 +151,6 @@ li {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding-right: 10px;
 }
 
 .linksbuendig {
@@ -175,13 +158,13 @@ li {
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  padding-left: 10px;
 }
 
 .center {
   text-align: center;
+  display: flex;
   justify-content: flex-start;
-
+  text-align: justify;
 }
 
 /********************* Skalierung **********************/
@@ -242,6 +225,10 @@ li {
   width: 80px;
   background-color: rgb(216, 216, 216);
   text-align: center;
+
+  resize: both;
+  overflow: auto;
+
 
   /* Inhalt vertikal mittig platzieren */
   display: -webkit-flex;
