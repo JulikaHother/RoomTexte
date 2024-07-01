@@ -1,216 +1,224 @@
+// Initialize count, previous class name, and current random value
 let count = 0;
-let prevClass = '';
+let prevClass = 'full';
 let currentRand = 1;
+let currentHeightRand = 1;
+let prevHeightClass = '';
 
 $(document).ready(function () {
   const initialWidth = $(document).width();
+  const initialHeight = $(document).height();
 
   function checkWidth() {
     const currentWidth = $(window).width();
-    // console.log('Window width:', currentWidth);
 
-    if (currentWidth <= initialWidth) {
-      $('body').addClass('halb-0');
-      $('body').removeClass('halb-3 halb-2 halb');
-      $('.halb-0').show();
-      $('.halb-3, .halb-2, .halb').hide();
-      resetRandStyles();
-    } else {
-      $('body').removeClass('halb-0');
-      $('.halb-0').hide();
-    }
-
-
-
-
-
-    // if ((currentWidth <= initialWidth / 2 && currentWidth >= initialWidth / 1.5) ||
-    //   (currentWidth >= initialWidth * 2 && currentWidth <= initialWidth / 1.5)) {
-    //   console.log(prevClass);
-    //   prevClass = 'halb'
-    // }
-    // else if ((currentWidth <= initialWidth / 1.5 && currentWidth >= initialWidth / 1.1) ||
-    //   (currentWidth >= initialWidth * 1.5 && currentWidth <= initialWidth / 1.1)) {
-    //   console.log(prevClass);
-    //   prevClass = 'halb-2'
-    // }
-    // else if ((currentWidth <= initialWidth / 1.1) ||
-    //   (currentWidth >= initialWidth * 1.1)) {
-    //   console.log(prevClass);
-    //   prevClass = 'halb-3'
-    // }
-
-
-    if ((currentWidth <= initialWidth / 1.1 || currentWidth >= initialWidth * 1.1) && prevClass !== 'halb-3') {
-      count++;
-      if (count > 3) count = 1;
-      currentRand = count;
-
-      $('.rand1, .rand2, .rand3').hide();
-      if (count === 1) {
-        $('.rand1').show();
-      } else if (count === 2) {
-        $('.rand2').show();
-      } else if (count === 3) {
-        $('.rand3').show();
+    if (currentWidth >= initialWidth / 1.1 && currentWidth <= initialWidth * 1.1) {
+      if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+        $('body').addClass('fullwidth');
+        $('body').removeClass('dreiviertelwidth halbewidth viertelwidth');
+        $('.fullwidth').show();
+        $('.dreiviertelwidth, .halbewidth, .viertelwidth').hide();
+        $('.raumblau, .raumbraun, .raumorange').css('background-color', '');
+        resetRandStyles();
+        console.log('START');
       }
+    } else if (currentWidth <= initialWidth / 2 && currentWidth <= initialWidth / 1.5) {
+      if (prevClass !== 'viertelwidth') {
+        prevClass = 'viertelwidth';
+        console.log(prevClass);
+        console.log('viertelwidth');
+        count = (count % 3) + 1;
+        currentRand = count;
+        $('.rand7, .rand8, .rand9').hide();
+        $(`.rand${count + 6}`).show();
 
-      prevClass = 'halb-3';
-    } else if ((currentWidth > initialWidth / 1.1 && currentWidth < initialWidth * 1.1) && prevClass === 'halb-3') {
-      prevClass = '';
-    }
-
-    if (currentWidth <= initialWidth / 1.1 || currentWidth >= initialWidth * 1.1) {
-      showCurrentRand('halb-3');
-      $('body').addClass('halb-3');
-      $('body').removeClass('halb-2 halb halb-0');
-      $('.halb-3').show();
-      $('.halb-2, .halb, .halb-0').hide();
-      $('.raumblau').css('background-color', 'rgba(0, 140, 255, 0.41)');
-    } else {
-      $('body').removeClass('halb-3');
-      $('.halb-3').hide();
-      $('.raumblau').css('background-color', '');
-    }
-
-    if ((currentWidth <= initialWidth / 1.5 || currentWidth >= initialWidth * 1.5) && prevClass !== 'halb-2') {
-      console.log('ppppppppp');
-      count++;
-      if (count > 3) count = 1;
-      currentRand = count;
-
-      $('.rand4, .rand5, .rand6').hide();
-      if (count === 1) {
-        $('.rand4').show();
-        console.log("rand4");
-      } else if (count === 2) {
-        $('.rand5').show();
-        console.log("rand5");
-      } else if (count === 3) {
-        $('.rand6').show();
-        console.log("rand6");
+        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+          showCurrentRand('viertelwidth');
+          $('body').addClass('viertelwidth');
+          $('body').removeClass('dreiviertelwidth halbewidth fullwidth');
+          $('.viertelwidth').show();
+          $('.halbewidth, .dreiviertelwidth, .fullwidth').hide();
+          $('.raumblau, .raumbraun').css('background-color', '');
+          $('.raumorange').css('background-color', 'rgba(255, 110, 77, 0.41)');
+        }
       }
+    } else if (currentWidth <= initialWidth / 1.5 && currentWidth <= initialWidth / 1.1) {
+      if (prevClass !== 'halbewidth') {
+        prevClass = 'halbewidth';
+        console.log(prevClass);
+        console.log('halbewidth');
+        count = (count % 3) + 1;
+        currentRand = count;
+        $('.rand4, .rand5, .rand6').hide();
+        $(`.rand${count + 3}`).show();
+        console.log(`rand${count + 3}`);
 
-      prevClass = 'halb-2';
-    } else if ((currentWidth > initialWidth / 1.5 && currentWidth < initialWidth * 1.5) && prevClass === 'halb-2') {
-      prevClass = '';
-    }
-
-    if (currentWidth <= initialWidth / 1.5 || currentWidth >= initialWidth * 1.5) {
-      showCurrentRand('halb-2');
-      $('body').addClass('halb-2');
-      $('body').removeClass('halb-3 halb halb-0');
-      $('.halb-2').show();
-      $('.halb-3, .halb, .halb-0').hide();
-      $('.raumblau').css('background-color', '');
-      $('.raumbraun').css('background-color', 'rgb(179, 134, 105, 0.41)');
-    } else {
-      $('body').removeClass('halb-2');
-      $('.halb-2').hide();
-      $('.raumbraun').css('background-color', '');
-    }
-
-    if ((currentWidth <= initialWidth / 2 || currentWidth >= initialWidth * 2) && prevClass !== 'halb') {
-      count++;
-      if (count > 3) count = 1;
-      currentRand = count;
-
-      $('.rand7, .rand8, .rand9').hide();
-      if (count === 1) {
-        $('.rand7').show();
-      } else if (count === 2) {
-        $('.rand8').show();
-      } else if (count === 3) {
-        $('.rand9').show();
+        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+          showCurrentRand('halbewidth');
+          $('body').addClass('halbewidth');
+          $('body').removeClass('dreiviertelwidth viertelwidth fullwidth');
+          $('.halbewidth').show();
+          $('.dreiviertelwidth, .viertelwidth, .fullwidth').hide();
+          $('.raumblau, .raumorange').css('background-color', '');
+          $('.raumbraun').css('background-color', 'rgba(179, 134, 105, 0.41)');
+        }
       }
+    } else if (currentWidth <= initialWidth / 1.1) {
+      if (prevClass !== 'dreiviertelwidth') {
+        prevClass = 'dreiviertelwidth';
+        console.log(prevClass);
+        console.log('dreiviertelwidth');
+        count = (count % 3) + 1;
+        currentRand = count;
+        $('.rand1, .rand2, .rand3').hide();
+        $(`.rand${count}`).show();
 
-      prevClass = 'halb';
-    } else if ((currentWidth > initialWidth / 2 && currentWidth < initialWidth * 2) && prevClass === 'halb') {
-      prevClass = '';
-    }
+        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+          showCurrentRand('dreiviertelwidth');
+          $('body').addClass('dreiviertelwidth');
+          $('body').removeClass('halbewidth viertelwidth fullwidth');
+          $('.dreiviertelwidth').show();
+          $('.halbewidth, .viertelwidth, .fullwidth').hide();
+          $('.raumbraun, .raumorange').css('background-color', '');
+          $('.raumblau').css('background-color', 'rgba(0, 140, 255, 0.41)');
+        }
+      }
+    } else if (currentWidth >= initialWidth * 2 && currentWidth >= initialWidth / 1.5) {
+      if (prevClass !== 'viertelwidth') {
+        prevClass = 'viertelwidth';
+        console.log(prevClass);
+        console.log('viertelwidth');
+        count = (count % 3) + 1;
+        currentRand = count;
+        $('.rand7, .rand8, .rand9').hide();
+        $(`.rand${count + 6}`).show();
 
-    if (currentWidth <= initialWidth / 2 || currentWidth >= initialWidth * 2) {
-      showCurrentRand('halb');
-      $('body').addClass('halb');
-      $('body').removeClass('halb-3 halb-2 halb-0');
-      $('.halb').show();
-      $('.halb-2, .halb-3, .halb-0').hide();
-      $('.raumblau').css('background-color', '');
-      $('.raumbraun').css('background-color', '');
-      $('.raumorange').css('background-color', 'rgb(255, 110, 77, 0.41)');
-    } else {
-      $('body').removeClass('halb');
-      $('.halb').hide();
-      $('.raumorange').css('background-color', '');
+        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+          showCurrentRand('viertelwidth');
+          $('body').addClass('viertelwidth');
+          $('body').removeClass('dreiviertelwidth halbewidth fullwidth');
+          $('.viertelwidth').show();
+          $('.halbewidth, .dreiviertelwidth, .fullwidth').hide();
+          $('.raumblau, .raumbraun').css('background-color', '');
+          $('.raumorange').css('background-color', 'rgba(255, 110, 77, 0.41)');
+        }
+      }
+    } else if (currentWidth >= initialWidth * 1.5 && currentWidth >= initialWidth / 1.1) {
+      if (prevClass !== 'halbewidth') {
+        prevClass = 'halbewidth';
+        console.log(prevClass);
+        console.log('halbewidth');
+        count = (count % 3) + 1;
+        currentRand = count;
+        $('.rand4, .rand5, .rand6').hide();
+        $(`.rand${count + 3}`).show();
+        console.log(`rand${count + 3}`);
+
+        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+          showCurrentRand('halbewidth');
+          $('body').addClass('halbewidth');
+          $('body').removeClass('dreiviertelwidth viertelwidth fullwidth');
+          $('.halbewidth').show();
+          $('.dreiviertelwidth, .viertelwidth, .fullwidth').hide();
+          $('.raumblau, .raumorange').css('background-color', '');
+          $('.raumbraun').css('background-color', 'rgba(179, 134, 105, 0.41)');
+        }
+      }
+    } else if (currentWidth >= initialWidth * 1.1) {
+      if (prevClass !== 'dreiviertelwidth') {
+        prevClass = 'dreiviertelwidth';
+        console.log(prevClass);
+        console.log('dreiviertelwidth');
+        count = (count % 3) + 1;
+        currentRand = count;
+        $('.rand1, .rand2, .rand3').hide();
+        $(`.rand${count}`).show();
+
+        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
+          showCurrentRand('dreiviertelwidth');
+          $('body').addClass('dreiviertelwidth');
+          $('body').removeClass('halbewidth viertelwidth fullwidth');
+          $('.dreiviertelwidth').show();
+          $('.halbewidth, .viertelwidth, .fullwidth').hide();
+          $('.raumbraun, .raumorange').css('background-color', '');
+          $('.raumblau').css('background-color', 'rgba(0, 140, 255, 0.41)');
+        }
+      }
     }
   }
 
-
   function resetRandStyles() {
-    $('.rand1, .rand2, .rand3, .rand4, .rand5, .rand6, .rand7, .rand8, .rand9').hide();
+    $('.rand1, .rand2, .rand3, .rand4, .rand5, .rand6, .rand7, .rand8, .rand9, .rand10, .rand11, .rand12, .rand13, .rand14, .rand15').hide();
   }
 
   function showCurrentRand(halbClass) {
-    if (halbClass === 'halb-3') {
+    if (halbClass === 'dreiviertelwidth') {
       $('.rand1, .rand2, .rand3').hide();
-      if (currentRand === 1) {
-        $('.rand1').show();
-      } else if (currentRand === 2) {
-        $('.rand2').show();
-      } else if (currentRand === 3) {
-        $('.rand3').show();
-      }
-    } else if (halbClass === 'halb-2') {
+      $(`.rand${currentRand}`).show();
+    } else if (halbClass === 'halbewidth') {
       $('.rand4, .rand5, .rand6').hide();
-      if (currentRand === 1) {
-        $('.rand4').show();
-      } else if (currentRand === 2) {
-        $('.rand5').show();
-      } else if (currentRand === 3) {
-        $('.rand6').show();
-      }
-    } else if (halbClass === 'halb') {
+      $(`.rand${currentRand + 3}`).show();
+    } else if (halbClass === 'viertelwidth') {
       $('.rand7, .rand8, .rand9').hide();
-      if (currentRand === 1) {
-        $('.rand7').show();
-      } else if (currentRand === 2) {
-        $('.rand8').show();
-      } else if (currentRand === 3) {
-        $('.rand9').show();
+      $(`.rand${currentRand + 6}`).show();
+    }
+  }
+
+  function showCurrentHeightRand(halbClass) {
+    if (halbClass === 'ueberhalbheight') {
+      $('.rand10, .rand11, .rand12').hide();
+      $(`.rand${currentHeightRand + 9}`).show();
+    } else if (halbClass === 'unterhalbheight') {
+      $('.rand13, .rand14, .rand15').hide();
+      $(`.rand${currentHeightRand + 12}`).show();
+    }
+  }
+
+  function checkHeight() {
+    const currentHeight = $(window).height();
+    console.log('Window height:', currentHeight);
+
+    if (currentHeight <= initialHeight / 2) {
+      if (prevHeightClass !== 'unterhalbheight') {
+        prevHeightClass = 'unterhalbheight';
+        $('body').addClass('unterhalbheight');
+        $('body').removeClass('ueberhalbheight fullwidth halbewidth dreiviertelwidth viertelwidth');
+        $('.unterhalbheight').show();
+        $('.ueberhalbheight, .fullwidth, .halbewidth, .dreiviertelwidth, .viertelwidth').hide();
+        $('.raumblau, .raumbraun, .raumorange, .raumlila').css('background-color', '');
+        $('.raumduli').css('background-color', 'rgba(82, 77, 173, 0.6)');
+
+        currentHeightRand = (currentHeightRand % 3) + 1;
+        showCurrentHeightRand('unterhalbheight');
+      }
+    } else if (currentHeight > initialHeight / 2 && currentHeight <= initialHeight / 1.5) {
+      if (prevHeightClass !== 'ueberhalbheight') {
+        prevHeightClass = 'ueberhalbheight';
+        $('body').addClass('ueberhalbheight');
+        $('body').removeClass('unterhalbheight fullwidth halbewidth dreiviertelwidth viertelwidth');
+        $('.ueberhalbheight').show();
+        $('.unterhalbheight, .fullwidth, .halbewidth, .dreiviertelwidth, .viertelwidth').hide();
+        $('.raumblau, .raumbraun, .raumorange, .raumduli').css('background-color', '');
+        $('.raumlila').css('background-color', 'rgba(220, 153, 251, 0.6)');
+
+        currentHeightRand = (currentHeightRand % 3) + 1;
+        showCurrentHeightRand('ueberhalbheight');
+      }
+    } else {
+      if (prevHeightClass !== '') {
+        prevHeightClass = '';
+        $('body').removeClass('ueberhalbheight unterhalbheight');
+        $('.ueberhalbheight, .unterhalbheight').hide();
+        checkWidth();
+        $('.raumlila, .raumduli').css('background-color', '');
       }
     }
   }
 
   checkWidth();
-
-  const documentHeight = $(document).height();
-  // console.log('Document height (initial):', documentHeight);
-
-  function checkHeight() {
-    const windowHeight = $(window).height();
-    console.log('Window height:', windowHeight);
-
-    if (windowHeight <= documentHeight / 1.5) {
-      $('body').addClass('hoehe1');
-      $('body').removeClass('halb-0 halb-2 halb-3 halb hoehe2 hoehe3');
-      $('.hoehe1').show();
-      $('.halb-0, .halb-2, .halb-3, .halb, .hoehe2, .hoehe3').hide();
-      $('.raumblau').css('background-color', '');
-      $('.raumbraun').css('background-color', '');
-      $('.raumorange').css('background-color', '');
-      $('.raumlila').css('background-color', 'rgb(220, 153, 251, 0.6)');
-    } else {
-      $('body').removeClass('hoehe1');
-      $('.hoehe1').hide();
-      $('.raumlila').css('background-color', '');
-    }
-  }
-
   checkHeight();
 
-  var prevW = -1, prevH = -1;
-  prevW = $(window).width();
-  prevH = $(window).height();
+  var prevW = $(window).width(), prevH = $(window).height();
 
   $(window).resize(function () {
     var widthChanged = false, heightChanged = false;
