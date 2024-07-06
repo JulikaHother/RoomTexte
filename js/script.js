@@ -1,3 +1,4 @@
+// Initialize count, previous class name, and current random value
 let count = 0;
 let prevClass = 'full';
 let currentRand = 1;
@@ -17,105 +18,65 @@ $(document).ready(function () {
         $('body').removeClass('dreiviertelwidth halbewidth viertelwidth');
         $('.fullwidth').show();
         $('.dreiviertelwidth, .halbewidth, .viertelwidth').hide();
+        $('.raumblau, .raumbraun, .raumorange').css('background-color', '');
         resetRandStyles();
         console.log('START');
       }
-    } else if (currentWidth <= initialWidth / 2 && currentWidth <= initialWidth / 1.5) {
+    } else if (currentWidth <= initialWidth / 2) {
       if (prevClass !== 'viertelwidth') {
         prevClass = 'viertelwidth';
+        console.log('viertelwidth');
         count = (count % 3) + 1;
         currentRand = count + 12;
-        resetRandStyles();
+        $('.rand').hide();
         $(`.rand${currentRand}`).show();
-        console.log(`.rand${currentRand} ` + 'viertelwidth');
+        console.log(`Showing rand${currentRand}`);
 
         if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
           $('body').addClass('viertelwidth');
           $('body').removeClass('dreiviertelwidth halbewidth fullwidth');
           $('.viertelwidth').show();
           $('.halbewidth, .dreiviertelwidth, .fullwidth').hide();
+          $('.raumblau, .raumbraun').css('background-color', '');
+          $('.raumorange').css('background-color', 'rgba(255, 110, 77, 0.41)');
         }
       }
-    } else if (currentWidth <= initialWidth / 1.5 && currentWidth <= initialWidth / 1.1) {
+    } else if (currentWidth > initialWidth / 2 && currentWidth <= initialWidth / 1.5) {
       if (prevClass !== 'halbewidth') {
         prevClass = 'halbewidth';
+        console.log('halbewidth');
         count = (count % 3) + 1;
         currentRand = count + 9;
-        resetRandStyles();
+        $('.rand').hide();
         $(`.rand${currentRand}`).show();
-        console.log(`.rand${currentRand} ` + 'halbewidth');
+        console.log(`Showing rand${currentRand}`);
 
         if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
           $('body').addClass('halbewidth');
           $('body').removeClass('dreiviertelwidth viertelwidth fullwidth');
           $('.halbewidth').show();
           $('.dreiviertelwidth, .viertelwidth, .fullwidth').hide();
+          $('.raumblau, .raumorange').css('background-color', '');
+          $('.raumbraun').css('background-color', 'rgba(179, 134, 105, 0.41)');
         }
       }
-    } else if (currentWidth <= initialWidth / 1.1) {
+    } else if (currentWidth > initialWidth / 1.5 && currentWidth <= initialWidth / 1.1) {
       if (prevClass !== 'dreiviertelwidth') {
         prevClass = 'dreiviertelwidth';
+        console.log('dreiviertelwidth');
         count = (count % 9) + 1;
         currentRand = count;
-        resetRandStyles();
+        $('.rand').hide();
         $(`.rand${currentRand}`).show();
-        console.log(`.rand${currentRand} ` + 'dreiviertelwidth');
+        console.log(`Showing rand${currentRand}`);
 
         if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
           $('body').addClass('dreiviertelwidth');
           $('body').removeClass('halbewidth viertelwidth fullwidth');
           $('.dreiviertelwidth').show();
           $('.halbewidth, .viertelwidth, .fullwidth').hide();
-        }
-      }
-    } else if (currentWidth >= initialWidth * 2 && currentWidth >= initialWidth / 1.5) {
-      if (prevClass !== 'viertelwidth') {
-        prevClass = 'viertelwidth';
-        count = (count % 3) + 1;
-        currentRand = count + 12;
-        resetRandStyles();
-        $(`.rand${currentRand}`).show();
-        console.log(`.rand${currentRand} ` + 'viertelwidth');
-
-
-        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
-          $('body').addClass('viertelwidth');
-          $('body').removeClass('dreiviertelwidth halbewidth fullwidth');
-          $('.viertelwidth').show();
-          $('.halbewidth, .dreiviertelwidth, .fullwidth').hide();
-        }
-      }
-    } else if (currentWidth >= initialWidth * 1.5 && currentWidth >= initialWidth / 1.1) {
-      if (prevClass !== 'halbewidth') {
-        prevClass = 'halbewidth';
-        count = (count % 3) + 1;
-        currentRand = count + 9;
-        resetRandStyles();
-        $(`.rand${currentRand}`).show();
-        console.log(`.rand${currentRand} ` + 'halbewidth');
-
-        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
-          $('body').addClass('halbewidth');
-          $('body').removeClass('dreiviertelwidth viertelwidth fullwidth');
-          $('.halbewidth').show();
-          $('.dreiviertelwidth, .viertelwidth, .fullwidth').hide();
-        }
-      }
-    } else if (currentWidth >= initialWidth * 1.1) {
-      if (prevClass !== 'dreiviertelwidth') {
-        prevClass = 'dreiviertelwidth';
-        count = (count % 9) + 1;
-        currentRand = count;
-        resetRandStyles();
-        $(`.rand${currentRand}`).show();
-        console.log(`.rand${currentRand} ` + 'dreiviertelwidth');
-
-
-        if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
-          $('body').addClass('dreiviertelwidth');
-          $('body').removeClass('halbewidth viertelwidth fullwidth');
-          $('.dreiviertelwidth').show();
-          $('.halbewidth, .viertelwidth, .fullwidth').hide();
+          $('.raumbraun, .raumorange').css('background-color', '');
+          $('.raumblau').css('background-color', 'rgba(0, 140, 255, 0.41)');
         }
       }
     }
@@ -126,38 +87,45 @@ $(document).ready(function () {
   }
 
   function showCurrentRand(halbClass) {
-    $('.rand').hide();
     if (halbClass === 'dreiviertelwidth') {
+      $('.rand').hide();
       $(`.rand${currentRand}`).show();
+      console.log(`.rand${currentRand}`);
     } else if (halbClass === 'halbewidth') {
+      $('.rand').hide();
       $(`.rand${currentRand}`).show();
+      console.log(`.rand${currentRand}`);
     } else if (halbClass === 'viertelwidth') {
+      $('.rand').hide();
       $(`.rand${currentRand}`).show();
+      console.log(`.rand${currentRand}`);
     }
   }
 
   function showCurrentHeightRand(halbClass) {
-    $('.rand').hide();
     if (halbClass === 'ueberhalbheight') {
+      $('.rand').hide();
       $(`.rand${currentHeightRand + 15}`).show();
-      console.log(`.rand${currentRand} ` + 'ueberhalbheight');
-
     } else if (halbClass === 'unterhalbheight') {
+      $('.rand').hide();
       $(`.rand${currentHeightRand + 18}`).show();
     }
   }
 
   function checkHeight() {
     const currentHeight = $(window).height();
+    console.log('Window height:', currentHeight);
+
     if (currentHeight <= initialHeight / 2) {
       if (prevHeightClass !== 'unterhalbheight') {
         prevHeightClass = 'unterhalbheight';
         $('body').addClass('unterhalbheight');
         $('body').removeClass('ueberhalbheight fullwidth halbewidth dreiviertelwidth viertelwidth');
         $('.unterhalbheight').show();
-        console.log(`.rand${currentRand} ` + 'unterhalbheight');
-
         $('.ueberhalbheight, .fullwidth, .halbewidth, .dreiviertelwidth, .viertelwidth').hide();
+        $('.raumblau, .raumbraun, .raumorange, .raumlila').css('background-color', '');
+        $('.raumduli').css('background-color', 'rgba(220, 153, 251, 0.6)');
+
         currentHeightRand = (currentHeightRand % 3) + 1;
         showCurrentHeightRand('unterhalbheight');
       }
@@ -168,6 +136,9 @@ $(document).ready(function () {
         $('body').removeClass('unterhalbheight fullwidth halbewidth dreiviertelwidth viertelwidth');
         $('.ueberhalbheight').show();
         $('.unterhalbheight, .fullwidth, .halbewidth, .dreiviertelwidth, .viertelwidth').hide();
+        $('.raumblau, .raumbraun, .raumorange, .raumduli').css('background-color', '');
+        $('.raumlila').css('background-color', 'rgba(82, 77, 173, 0.6)');
+
         currentHeightRand = (currentHeightRand % 3) + 1;
         showCurrentHeightRand('ueberhalbheight');
       }
@@ -177,6 +148,7 @@ $(document).ready(function () {
         $('body').removeClass('ueberhalbheight unterhalbheight');
         $('.ueberhalbheight, .unterhalbheight').hide();
         checkWidth();
+        $('.raumlila, .raumduli').css('background-color', '');
       }
     }
   }
@@ -200,6 +172,9 @@ $(document).ready(function () {
     prevW = $(window).width();
     prevH = $(window).height();
   });
+});
+
+$(document).ready(function () {
 
   function closestEdgeX(x, w) {
     if (x <= w / 2) {

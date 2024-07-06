@@ -12,7 +12,6 @@ body {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
 }
 
 ::-webkit-scrollbar {
@@ -45,8 +44,6 @@ li {
   margin: 0;
   padding: 0;
 }
-
-
 
 /************************************* startseite **********************************/
 .logotext {
@@ -144,7 +141,6 @@ li {
   font-size: 3.5rem;
   line-height: 110%;
   text-align: justify;
-
 }
 
 #textHeidenord {
@@ -159,7 +155,6 @@ li {
   text-align: justify;
 }
 
-
 #textProcessin {
   font-size: 2rem;
   line-height: 105%;
@@ -168,7 +163,6 @@ li {
   text-align: justify;
   hyphens: auto;
 }
-
 
 .rechtsbuendig {
   text-align: right;
@@ -190,7 +184,6 @@ li {
   width: 100%;
   justify-content: center;
 }
-
 
 /********************* Skalierung **********************/
 .fullwidth,
@@ -214,7 +207,6 @@ li {
 
 .halbewidth {
   background-color: rgb(179, 134, 105);
-
 }
 
 .dreiviertelwidth {
@@ -250,7 +242,6 @@ li {
   cursor: url('../img/resize.svg'), auto;
 }
 
-
 .grundriss {
   position: relative;
   border: 1px solid black;
@@ -264,7 +255,6 @@ li {
 .grundriss:hover {
   cursor: url('../img/resize.svg'), auto;
 }
-
 
 .raumblau,
 .raumbraun,
@@ -330,7 +320,6 @@ li {
   display: none !important;
 }
 
-
 .leftbottom * {
   cursor: sw-resize;
 }
@@ -346,8 +335,6 @@ li {
 .lefttop * {
   cursor: nw-resize;
 }
-
-
 
 .leftbottom a,
 .rightbottom a,
