@@ -20,17 +20,16 @@ $(document).ready(function () {
         $('.dreiviertelwidth, .halbewidth, .viertelwidth').hide();
         $('.raumblau, .raumbraun, .raumorange').css('background-color', '');
         resetRandStyles();
-        console.log('START');
+        // console.log('START');
       }
     } else if (currentWidth <= initialWidth / 2) {
       if (prevClass !== 'viertelwidth') {
         prevClass = 'viertelwidth';
-        console.log('viertelwidth');
         count = (count % 3) + 1;
         currentRand = count + 12;
         $('.rand').hide();
         $(`.rand${currentRand}`).show();
-        console.log(`Showing rand${currentRand}`);
+        // console.log(`rand${currentRand} ` + 'viertelwidth');
 
         if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
           $('body').addClass('viertelwidth');
@@ -44,12 +43,11 @@ $(document).ready(function () {
     } else if (currentWidth > initialWidth / 2 && currentWidth <= initialWidth / 1.5) {
       if (prevClass !== 'halbewidth') {
         prevClass = 'halbewidth';
-        console.log('halbewidth');
         count = (count % 3) + 1;
         currentRand = count + 9;
         $('.rand').hide();
         $(`.rand${currentRand}`).show();
-        console.log(`Showing rand${currentRand}`);
+        // console.log(`rand${currentRand} ` + 'halbewidth');
 
         if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
           $('body').addClass('halbewidth');
@@ -63,12 +61,11 @@ $(document).ready(function () {
     } else if (currentWidth > initialWidth / 1.5 && currentWidth <= initialWidth / 1.1) {
       if (prevClass !== 'dreiviertelwidth') {
         prevClass = 'dreiviertelwidth';
-        console.log('dreiviertelwidth');
         count = (count % 9) + 1;
         currentRand = count;
         $('.rand').hide();
         $(`.rand${currentRand}`).show();
-        console.log(`Showing rand${currentRand}`);
+        console.log(`rand${currentRand} ` + 'dreiviertelwidth');
 
         if (!$('body').hasClass('ueberhalbheight') && !$('body').hasClass('unterhalbheight')) {
           $('body').addClass('dreiviertelwidth');
@@ -90,15 +87,15 @@ $(document).ready(function () {
     if (halbClass === 'dreiviertelwidth') {
       $('.rand').hide();
       $(`.rand${currentRand}`).show();
-      console.log(`.rand${currentRand}`);
+      // console.log(`.rand${currentRand}`);
     } else if (halbClass === 'halbewidth') {
       $('.rand').hide();
       $(`.rand${currentRand}`).show();
-      console.log(`.rand${currentRand}`);
+      // console.log(`.rand${currentRand}`);
     } else if (halbClass === 'viertelwidth') {
       $('.rand').hide();
       $(`.rand${currentRand}`).show();
-      console.log(`.rand${currentRand}`);
+      // console.log(`.rand${currentRand}`);
     }
   }
 
@@ -114,7 +111,7 @@ $(document).ready(function () {
 
   function checkHeight() {
     const currentHeight = $(window).height();
-    console.log('Window height:', currentHeight);
+    // console.log('Window height:', currentHeight);
 
     if (currentHeight <= initialHeight / 2) {
       if (prevHeightClass !== 'unterhalbheight') {
@@ -122,6 +119,8 @@ $(document).ready(function () {
         $('body').addClass('unterhalbheight');
         $('body').removeClass('ueberhalbheight fullwidth halbewidth dreiviertelwidth viertelwidth');
         $('.unterhalbheight').show();
+        console.log(`rand${currentRand} ` + 'unterhalbheight');
+
         $('.ueberhalbheight, .fullwidth, .halbewidth, .dreiviertelwidth, .viertelwidth').hide();
         $('.raumblau, .raumbraun, .raumorange, .raumlila').css('background-color', '');
         $('.raumduli').css('background-color', 'rgba(220, 153, 251, 0.6)');
@@ -135,6 +134,8 @@ $(document).ready(function () {
         $('body').addClass('ueberhalbheight');
         $('body').removeClass('unterhalbheight fullwidth halbewidth dreiviertelwidth viertelwidth');
         $('.ueberhalbheight').show();
+        console.log(`rand${currentRand} ` + 'ueberhalbheight');
+
         $('.unterhalbheight, .fullwidth, .halbewidth, .dreiviertelwidth, .viertelwidth').hide();
         $('.raumblau, .raumbraun, .raumorange, .raumduli').css('background-color', '');
         $('.raumlila').css('background-color', 'rgba(82, 77, 173, 0.6)');
@@ -203,7 +204,7 @@ $(document).ready(function () {
     $('html').removeClass();
     $('html').addClass(edgeX + edgeY);
 
-    console.log(edgeX + edgeY);
+    // console.log(edgeX + edgeY);
   }
 
   $(document).on('mousemove', function (e) {
