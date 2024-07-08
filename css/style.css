@@ -12,6 +12,7 @@ body {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -51,19 +52,51 @@ li {
   font-size: 3.6rem;
   top: 30px;
   left: 35px;
-  width: 400px;
+  width: 250px;
   height: auto;
-  color: black !important;
+  /* background-color: lightgray; */
+  color: rgb(82, 77, 173) !important;
+  z-index: 10;
 }
 
 #about-text {
   text-indent: 255px;
   font-size: 3.1rem;
   display: none;
-  margin-top: 35px;
-  margin-left: 39px;
-  max-width: 92vw;
+  padding-top: 35px;
+  padding-left: 39px;
+  max-width: 95vw;
+  z-index: 100 !important;
 }
+
+.resizable-container {
+  display: inline-block;
+  position: relative;
+  width: 50px;
+  height: 30px;
+  overflow: hidden;
+  resize: both;
+  min-width: 50px;
+  min-height: 30px;
+  max-width: 150px;
+  /* Three times the initial width */
+  max-height: 90px;
+  /* Three times the initial height */
+  aspect-ratio: 5 / 3 !important;
+  /* Desired aspect ratio */
+}
+
+.resizable-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  aspect-ratio: 5 / 3 !important;
+
+}
+
 
 .kursiv {
   font-style: italic;
@@ -75,35 +108,50 @@ li {
   text-decoration-color: black;
 }
 
+.zwei {
+  text-decoration-color: rgb(82, 77, 173) !important;
+}
+
 .farbe1 {
   color: rgb(0, 140, 255);
-  cursor: nesw-resize;
+}
+
+.farbe1:hover,
+.farbe2:hover,
+.farbe3:hover {
+  cursor: ew-resize;
 }
 
 .farbe2 {
   color: rgb(179, 134, 105);
-  cursor: nesw-resize;
 }
 
 .farbe3 {
   color: rgb(255, 110, 77);
-  cursor: nesw-resize;
 }
 
 .farbe4 {
   color: rgb(209, 121, 250);
-  cursor: nesw-resize;
 }
 
 .farbe5 {
-  color: rgb(82, 77, 173);
-  cursor: nesw-resize;
+  color: rgb(59 140 142);
+}
+
+
+.farbe4:hover,
+.farbe5:hover {
+  cursor: ns-resize;
 }
 
 .farbe6 {
   color: rgba(42, 41, 41, 0.245);
-  cursor: nesw-resize;
 }
+
+.farbe6:hover {
+  cursor: all-scroll;
+}
+
 
 /************************************* texte **********************************/
 .texte {
@@ -127,9 +175,7 @@ li {
 
 .textcontainer {
   width: 100vw;
-  height: calc(100vh - 160px);
-  margin-top: 80px;
-  padding: 0px 35px 35px 35px;
+  padding: 80px 35px 150px 35px;
   overflow: scroll;
 }
 
@@ -214,7 +260,7 @@ li {
 }
 
 .ueberhalbheight {
-  background-color: rgb(82, 77, 173) !important;
+  background-color: rgb(59 140 142) !important;
 }
 
 .unterhalbheight {
@@ -224,6 +270,54 @@ li {
 .rand {
   display: none;
 }
+
+
+.logotext-fullwidth {
+  color: rgb(82, 77, 173) !important;
+  background-color: lightgray;
+
+}
+
+.logotext-dreiviertelwidth {
+  color: rgb(209, 121, 250) !important;
+}
+
+.logotext-dreiviertelwidth .zwei {
+  text-decoration-color: rgb(209, 121, 250) !important;
+}
+
+.logotext-halbwidth {
+  color: rgb(255, 110, 77) !important;
+}
+
+.logotext-halbwidth .zwei {
+  text-decoration-color: rgb(255, 110, 77) !important;
+}
+
+.logotext-viertelwidth {
+  color: rgb(0, 140, 255) !important;
+}
+
+.logotext-viertelwidth .zwei {
+  text-decoration-color: rgb(0, 140, 255) !important;
+}
+
+.logotext-ueberhalbheight {
+  color: rgb(179, 134, 105) !important;
+}
+
+.logotext-ueberhalbheight .zwei {
+  text-decoration-color: rgb(179, 134, 105) !important;
+}
+
+.logotext-unterhalbheight {
+  color: rgb(59 140 142) !important;
+}
+
+.logotext-unterhalbheight .zwei {
+  text-decoration-color: rgb(59 140 142) !important;
+}
+
 
 /*************************** Navigation **************************/
 .raumplan {
@@ -236,11 +330,14 @@ li {
   text-align: center;
   display: flex;
   align-items: center;
+  cursor: none;
 }
 
-.raumplan:hover {
-  cursor: url('../img/resize.svg'), auto;
+.raumplan * {
+  pointer-events: none;
 }
+
+
 
 .grundriss {
   position: relative;
@@ -252,9 +349,7 @@ li {
   background-color: rgba(42, 41, 41, 0.245);
 }
 
-.grundriss:hover {
-  cursor: url('../img/resize.svg'), auto;
-}
+
 
 .raumblau,
 .raumbraun,
@@ -292,7 +387,7 @@ li {
 }
 
 .raumlila {
-  border-color: rgb(82, 77, 180);
+  border-color: rgb(59 140 142);
   z-index: 4;
   width: 90%;
   height: 60%;
@@ -341,4 +436,19 @@ li {
 .righttop a,
 .lefttop a {
   cursor: pointer;
+}
+
+.nav-cursor {
+  position: absolute;
+  top: 400px;
+  left: 400px;
+  display: none;
+  z-index: 10000;
+  cursor: none !important;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+}
+
+.show {
+  display: block;
 }
