@@ -8,6 +8,20 @@ let countUnterhalb = 21; // Start at 21 so the first increment goes to 22
 let prevClass = '';
 let prevHeightClass = '';
 
+$(document).ready(function () {
+  $(".resizable-container").click(function () {
+    $(this).toggleClass("expanded");
+
+    if ($(this).hasClass("expanded")) {
+      $(this).css("cursor", "zoom-out");
+      $(this).find('img').css("cursor", "zoom-out"); // Ensures cursor changes inside the image as well
+    } else {
+      $(this).css("cursor", "zoom-in");
+      $(this).find('img').css("cursor", "zoom-in"); // Ensures cursor changes inside the image as well
+    }
+  });
+});
+
 
 $(document).ready(function () {
   const initialWidth = $(document).width();
